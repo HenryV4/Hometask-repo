@@ -13,14 +13,14 @@ class FlowerShop:
     def __init__(self):
         self.stock = []
 
-    def add_flower(self, flower, quantity):
+    def add_flowers(self, flower, quantity):
         self.stock.extend([flower] * quantity)
 
     def remove_flower(self, flower):
         if flower in self.stock:
             self.stock.remove(flower)
 
-    def get_the_most_expensive_flower(self, n=1):
+    def get_the_most_expensive_flowers(self, n=1):
         sorted_flowers = sorted(
             self.stock, key=lambda flower: flower.price, reverse=True
         )
@@ -31,12 +31,12 @@ class Bouquet:
     def __init__(self):
         self.flower = []
 
-    def add_flower(self, flower, quantity=1):
+    def add_flowers(self, flower, quantity=1):
         self.flower.extend([flower] * quantity)
 
-    def get_the_most_expensive_flower(self, n=1):
+    def get_the_most_expensive_flowers(self, n=1):
         sorted_flower = sorted(
-            self.flowers, key=lambda flower: flower.price, reverse=True
+            self.flower, key=lambda flower: flower.price, reverse=True
         )
         return sorted_flower[:n]
 
@@ -44,13 +44,13 @@ class Bouquet:
         flower_list = "\n".join(
             [
                 f"{flower.color} {flower.name} for {flower.price}$"
-                for flower in self.flowers
+                for flower in self.flower
             ]
         )
         return f"Bouquet contents:\n{flower_list}"
 
-    def calculate_total_price(self):
-        total_price = sum(flower.price for flower in self.flowers)
+    def calculate_total_price_of_flowers(self):
+        total_price = sum(flower.price for flower in self.flower)
         return total_price
 
 
@@ -64,23 +64,23 @@ def main():
     flower_shop.add_flowers(tulip2, 10)
 
     bouquet = Bouquet()
-    bouquet.add_flower(rose, quantity=1)
-    bouquet.add_flower(tulip1, quantity=1)
-    bouquet.add_flower(tulip2, quantity=1)
+    bouquet.add_flowers(rose, quantity=1)
+    bouquet.add_flowers(tulip1, quantity=1)
+    bouquet.add_flowers(tulip2, quantity=1)
 
-    expensive_flower = flower_shop.get_the_most_expensive_flower(n=3)
+    expensive_flower = flower_shop.get_the_most_expensive_flowers(n=3)
     print("Top 3 expensive flowers in the flower shop:")
     for flower in expensive_flower:
         print(f"{flower.color} {flower.name} - {flower.price} $")
 
-    most_expensive_bouquet_flower = bouquet.get_the_most_expensive_flower(n=3)
+    most_expensive_bouquet_flowers = bouquet.get_the_most_expensive_flowers(n=3)
     print("Top 3 expensive flowers in the bouquet:")
-    for flower in most_expensive_bouquet_flower:
+    for flower in most_expensive_bouquet_flowers:
         print(f"{flower.color} {flower.name} - {flower.price} $")
 
     print(bouquet.get_bouquet_description())
 
-    print(f"Total sum of your bouquet is {bouquet.calculate_total_price()} $")
+    print(f"Total sum of your bouquet is {bouquet.calculate_total_price_of_flowers()} $")
 
 
 if __name__ == "__main__":
